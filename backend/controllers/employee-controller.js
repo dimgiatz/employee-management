@@ -15,7 +15,7 @@ exports.employeeSearch=(req,res)=>{
 }
 
 exports.employeeDelete=(req,res)=>{
-    Employee.skillDelete(req.body.id, (status,message)=>{
+    Employee.employeeDelete(req.body.id, (status,message)=>{
         res.status(status).json(message);
     });
 }

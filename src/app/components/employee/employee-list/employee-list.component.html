@@ -1,0 +1,67 @@
+<div style="display: flex;flex-direction:column;align-items:stretch;">
+  <mat-form-field>
+    <input matInput name="searchName" (keyup)="search()" [(ngModel)]="searchText" placeholder="Αναζήτηση">
+  </mat-form-field>
+  <div fxLayout="row wrap" fxLayout="start center">
+    <mat-form-field>
+      <mat-select (selectionChange)="search()" [(value)]="sortBy" placeholder="Order By">
+        <mat-option value="surname">
+          Surname
+        </mat-option>
+        <mat-option value="hiredAt">
+          Hiring Date
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div fxFlex="2"></div>
+    <mat-form-field>
+      <mat-select (selectionChange)="search()" [(value)]="sortOrder" placeholder="Order">
+        <mat-option value="1">
+          Ascending
+        </mat-option>
+        <mat-option value="-1">
+          Descending
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+<div *ngIf="employees; else loading">
+<div *ngIf="employees.length>0; else notFound">
+  <div class="list-cards-layout">
+    <mat-card style="margin-bottom:10px;" *ngFor="let e of employees">
+      <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+        <span>{{e.name}}&nbsp;{{e.surname}}</span>
+        <div fxFlex></div>
+        <a mat-icon-button [routerLink]="['/view','employee','edit',e._id]"><mat-icon class="icon-size" color="primary">edit</mat-icon></a>
+        <button mat-icon-button (click)="deleteEmployees(e)"><mat-icon class="icon-size" color="warn">delete</mat-icon></button>
+      </mat-card-title>
+      <hr>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center space-between" fxLayoutGap="5px grid">
+        <div fxLayout="row" fxLayoutAlign="start center"><mat-icon matTooltip="Phone" style="padding-right:10px">phone</mat-icon> {{e.phone}}</div> 
+        <div fxLayout="row" fxLayoutAlign="start center"><mat-icon matTooltip="Email" style="padding-right:10px">mail</mat-icon> {{e.email}}</div> 
+        <div fxLayout="row" fxLayoutAlign="start center"><mat-icon matTooltip="Address" style="padding-right:10px">location_city</mat-icon> {{e.address}}</div> 
+        <div fxLayout="row" fxLayoutAlign="start center"><mat-icon matTooltip="Hiring Date" style="padding-right:10px">calendar_today</mat-icon> {{e.hiredAt|date:'dd-MM-yyyy HH:mm:ss'}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-paginator #paginator
+      [(length)]="length"
+      [(pageIndex)]="pageIndex"
+      [(pageSize)]="pageSize"
+      [(pageSizeOptions)]="pageSizeOptions"
+      (page)="changePage(paginator.pageSize,paginator.pageIndex)">
+  </mat-paginator>
+</div>
+<div class="loading">
+  <ng-template #notFound><div style="text-align: center;font-weight: bold;">Results Not Found</div></ng-template>
+</div>
+</div>
+
+<ng-template #loading>
+<div class="loading">
+  <mat-spinner></mat-spinner>
+  <h3>Loading...</h3>
+</div>
+</ng-template>
+</div>
+

@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html,body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(235, 235, 235)!important;
+    font-family: 'Didact Gothic', sans-serif;
+  }
+
+  label{
+    font-weight: bold
+  }
+
+  .list-cards-layout{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: flex-start;
+    margin: 20px;
+    }
+
+    .icon-size{
+        font-size:1.8em
+    }
+      
+    .icon-size svg{
+        font-size:1.8em
+    }
+
+  mat-paginator{
+    background-color: rgb(235, 235, 235)!important; 
+  }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    }
+
+  input{
+    height:17px;
+  }
+  
+  .table > tbody > tr > td {
+    vertical-align: middle;
+  }
+  
+  .snack-success {
+    background-color: green!important;
+    color:white!important;
+  }
+  
+  .snack-error {
+    background-color: red!important;
+    color:white!important;
+  }

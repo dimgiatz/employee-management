@@ -1,0 +1,29 @@
+<mat-form-field>
+    <mat-chip-list #chipList style="display: inline-block;">
+      <mat-chip
+        *ngFor="let i of selectedItems"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(i)">
+        {{i}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        [attr.disabled]="(title==='Κατηγορίες'||title==='Ομάδες Επαφών')&&selectedItems.length>=1"
+        #autoTrigger="matAutocompleteTrigger"
+       (focus)="matAutocomplete.showPanel = true"
+        [placeholder]="title"
+        #fieldInput
+        [formControl]="fieldCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let i of filteredItems | async" [value]="i">
+        {{i}}
+      </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

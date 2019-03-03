@@ -1,0 +1,41 @@
+<div style="display: flex;flex-direction:column;align-items:stretch;">
+      <mat-form-field>
+        <input matInput name="searchName" (keyup)="search()" [(ngModel)]="searchText" placeholder="Αναζήτηση">
+      </mat-form-field>
+
+  <div *ngIf="skills; else loading">
+    <div *ngIf="skills.length>0; else notFound">
+      <div class="list-cards-layout">
+        <mat-card style="margin-bottom:10px;" *ngFor="let s of skills">
+          <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+            <span>{{s.name}}</span>
+            <div fxFlex></div>
+            <a mat-icon-button [routerLink]="['/view','skill','edit',s._id]"><mat-icon class="icon-size" color="primary">edit</mat-icon></a>
+            <button mat-icon-button (click)="deleteSkills(s)"><mat-icon class="icon-size" color="warn">delete</mat-icon></button>
+          </mat-card-title>
+          <hr>
+          <mat-card-content>
+            {{s.description}}
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <mat-paginator #paginator
+          [(length)]="length"
+          [(pageIndex)]="pageIndex"
+          [(pageSize)]="pageSize"
+          [(pageSizeOptions)]="pageSizeOptions"
+          (page)="pageChanges(paginator.pageSize,paginator.pageIndex)">
+      </mat-paginator>
+    </div>
+    <div class="loading">
+      <ng-template #notFound><div style="text-align: center;font-weight: bold;">Results Not Found</div></ng-template>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <h3>Loading...</h3>
+    </div>
+  </ng-template>
+</div>

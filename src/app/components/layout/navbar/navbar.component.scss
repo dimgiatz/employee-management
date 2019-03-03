@@ -1,0 +1,14 @@
+.avatar{
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+
+
+@media screen and (max-width: 442px) {
+    #navbar_uname{
+        display: none;
+    }
+}

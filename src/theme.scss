@@ -1,0 +1,33 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-indigo);
+$my-app-accent:  mat-palette($mat-orange,500);
+$my-app-warn:    mat-palette($mat-red,600);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+.unicorn-dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+$alternative-primary: mat-palette($mat-blue-grey,900);
+$alternative-accent:  mat-palette($mat-deep-orange,900);
+$alternative-warn:    mat-palette($mat-deep-orange);
+$alternative-theme:   mat-light-theme($alternative-primary, $alternative-accent, $alternative-warn);
+
+.alternative-theme {
+  @include angular-material-theme($alternative-theme);
+}
+
+$custom-typography: mat-typography-config(
+    $font-family: 'Didact Gothic'
+);
+
+@include angular-material-typography($custom-typography);

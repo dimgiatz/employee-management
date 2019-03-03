@@ -1,0 +1,20 @@
+<div class="alternative-theme">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="skillMenu">Skill</button>
+        <mat-menu #skillMenu="matMenu" fxLayout="column">
+          <div class="actionMenu">
+            <button mat-button [routerLink]="['/view/skill/create']">Create Skill</button>
+            <button mat-button [routerLink]="['/view/skills']">Skill List</button>
+          </div>
+        </mat-menu>
+      <button mat-button [matMenuTriggerFor]="employeeMenu">Employee</button>
+      <mat-menu class="actionMenu" #employeeMenu="matMenu">
+          <div class="actionMenu">
+            <button mat-button [routerLink]="['/view/employee/create']">Create Employee</button>
+            <button mat-button [routerLink]="['/view/employees']">Employee List</button>
+          </div>
+      </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+</div>

@@ -1,0 +1,35 @@
+<div *ngIf="showPage;else hidePage">
+<mat-card fxLayout="column" fxLayoutAlign="space-around center">
+    <mat-card-header>
+      <mat-card-title>Edit Skill</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form #f="ngForm" (ngSubmit)="onYesClick(f)" fxLayout="column" fxLayoutAlign="space-around center">
+        <label for="name">Name</label>
+        <mat-form-field>
+          <input type="text" placeholder="Enter name" matInput #nameField id="name" name="name" required="true" [ngModel]="skill.name">
+          <mat-error *ngIf="!nameField.valid">Name required</mat-error>
+        </mat-form-field>
+        <label for="description">Description</label>
+        <mat-form-field>
+          <textarea placeholder="Enter description" matInput #description cdkTextareaAutosize id="description" name="description" [ngModel]="skill.description"></textarea>
+        </mat-form-field>
+        <label>Creation Date</label>
+        <div style="padding: 10px">{{skill.createdAt}}</div>
+        <label>Last Updated</label>
+        <div style="padding: 10px">{{skill.updatedAt}}</div>
+        <div fxLayout="row">
+          <button type="button" color="warn" mat-raised-button [routerLink]="['/view','skills']">Back</button>
+          <button [disabled]="!f.valid" type="submit" color="primary" mat-raised-button cdkFocusInitial>Save Changes</button>
+        </div>
+      </form>
+    </mat-card-content>
+</mat-card>
+</div>
+
+<ng-template #hidePage>
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+      <h3>Loading...</h3>
+    </div>
+</ng-template>

@@ -17,8 +17,8 @@ const appRoutes: Routes = [
          { path: 'skill/create', component: SkillCreateComponent },
          { path: 'skills', component: SkillListComponent }
     ] },
-    { path: '', component: EmployeeListComponent},
-    { path: '**', component: EmployeeListComponent}
+    { path: '', component: DashboardComponent},
+    { path: '**', component: DashboardComponent}
 ];
 
 @NgModule({

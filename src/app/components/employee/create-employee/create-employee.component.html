@@ -28,7 +28,7 @@
         <mat-form-field>
             <input type="text" placeholder="Enter address" matInput #addressField id="address" name="address" ngModel>
         </mat-form-field>
-        <label for="skills">Skills</label>
+        <label *ngIf="skillNames.length" for="skills">Skills</label>
         <div *ngIf="skillNames.length" style="display:flex;flex-wrap: wrap">
           <app-chip title="Skills" [items]="skillNames" (emt)="onSkillsChange($event)"></app-chip>
         </div>

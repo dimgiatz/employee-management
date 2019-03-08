@@ -1,7 +1,7 @@
 <div *ngIf="showPage;else hidePage">
   <mat-drawer-container autosize>
-    <mat-drawer #drawer mode="side">
-      <section *ngIf="allSkills&&checkedSkills" fxLayout="column">
+    <mat-drawer style="max-width: 80%;padding: 20px" #drawer mode="over">
+      <section fxLayout="column">
         <mat-checkbox *ngFor="let s of allSkills" [(ngModel)]="checkedSkills[s._id]" [ngModelOptions]="{standalone: true}">{{s.name}}</mat-checkbox>
       </section>
     </mat-drawer> 
@@ -37,7 +37,7 @@
               <input type="text" placeholder="Enter address" matInput #addressField id="address" name="address" [ngModel]="employee.address">
           </mat-form-field>  
           <div style="padding-bottom:10px" >
-              <button type="button" mat-button (click)="drawer.toggle()">
+              <button type="button" mat-button (click)="(allSkills&&checkedSkills)?drawer.toggle():null">
                   <b style="padding-right:10px">Employee's Skills</b><mat-icon>more_horiz</mat-icon> 
               </button>
           </div>
